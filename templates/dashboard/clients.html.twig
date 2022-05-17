@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+{% block title %} Ode ide title {% endblock %}
+{% block body %}
+
+    <div class="container-user">
+        <div class="table">
+            <div class="search">
+                <img src="{{ asset('images/lupa.png') }}"></img>
+                <input type="text" id="myInput" variant="outlined" placeholder="Search"></input>
+                    <a href="javascript:void(0)" class="addBtnUser" >Add client</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="border-left">Avatar</th>
+                        <th>Client name</th>
+                        <th>Email</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in clients %}
+                    <tr>
+                        <td>{{client.avatar}}</td>
+                        <td>{{client.clientName}}</td>
+                        <td>{{client.email}}</td>
+                        <td class="options">
+                        
+                            <a href="{{ path('dashboard_clientProfile', {id: client.id}) }}" ><img src="{{ asset("/images/icons/eye.svg") }}" ></img></a>
+                            
+                            <button class="delete-btn eye-btn">
+                                <a><img class="delete-user" src="{{ asset("images/icons/trash-2.svg") }}" data-delete="{{ client.id }}" alt="delete"></img></a>
+                            </button>
+
+                            <button class="dollar-btn eye-btn">
+                                <a><img class="modalDollarsOpen" src="{{ asset("images/icons/cash.svg") }}"  data-dollars="{{ client.id }}" alt="dolar" ></img></a>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    {# DELETE #}
+        {% for client in clients %}
+            <div class="delete" data-delete-modal="{{ client.id }}">
+                <div class="delete-center">
+                    <div class="popup">
+                        <p>Are you sure you want to delete</p>
+                        <h2>{{client.clientName}}</h2>
+                        <div class="btn-delete">
+                            <a href="{{ path('dashboard_deleteUser', {id: client.id, action:'delete_client'}) }}" class="delete-yes">Yes</a>
+                            <div class="btnNo input-btn delete-cancle">
+                                <a href="#" class="cancleBtn">No</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    {# DOLLARS #}
+        {% for client in clients %}
+            <div class="modalDollars" data-dollars-modal="{{ client.id }}">
+                <div class="dollars-center">
+                    <div class="dollar-modal margin-dollars">
+                        <div class="grid-dollars">
+                            <p>Invoice data</p>
+                            <a class="exit-dollars">
+                                <img class="closeModalDollars" src="./images/icons/x-icon.svg" />
+                            </a>
+                        </div>
+                        <div class="email-dollars">
+                            <p>{{client.email}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    {# ADD CLIENT #}
+
+
+        <div class="background-add-users">
+            <div class="new-user edit-users">
+                <h2>New Client</h2>
+                <div class="formAddModal">
+                    
+                    {{form_start(form, {'attr': {'class': 'inputs'}}) }}
+
+                        <div>
+                            {{form_row(form.avatar, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.clientName, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.email, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.paymentMethod, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.bankAcount, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div class="cancle-and-add">
+                            <div class="closeEdit">
+                                <button class="closeAdd">Cancel</button>
+                            </div>
+                            {{form_row(form.save, {'attr' : {'class': 'editBtn'}}) }}
+                        </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+
+    
+    {# TIME #}
+        {% for client in clients %}
+        <div class="times" data-time-modal="{{ client.id }}">
+            <div class="time-center">
+                <div class="modal-time">
+                    <p>Enter time used for: {{client.clientName}}</p>
+                        <div class="time-grid">
+                            <div class="description">
+                                <label htmlFor="description">Description:</label>
+                                <textarea class="row-height" rows="20" required></textarea>
+                                <label htmlFor="html">Client:</label>
+                                <input type="text" required class="input-time-client"></input>
+                            </div>
+                            <div class="date">
+                                <label htmlFor="html">Date:</label>
+                                <input type="date" id="date-time" required></input>
+                                <label htmlFor="html">Time spent:</label>
+                                <div class="hours hours-time">
+                                    <input type="time" id="appt" min="00:00" max="00:00" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-delete delete-margin">
+                            <a class="delete-input">Yes</a>
+                            <div class="delete-no log-out-btn input-btn delete-cancle">
+                                    <a class="closeModalTime ">No</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+
+{% endblock %}

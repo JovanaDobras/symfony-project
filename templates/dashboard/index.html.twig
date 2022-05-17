@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block title %} Ode ide title {% endblock %}
+{% block body %}
+
+    <div class="container-user">
+        <div class="table">
+            <div class="search">
+                <img src="{{ asset('images/lupa.png') }}"></img>
+                <input type="text" id="myInput" variant="outlined" placeholder="Search"></input>
+                    <a href="javascript:void(0)" class="addBtnUser" >Add user</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                    <th class="border-left">Avatar</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>City</th>
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{user.avatar}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.city}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.status}}</td>
+                        <td class="options">
+                            <a href="{{ path('dashboard_myProfile', {id: user.id}) }}" ><img src="{{ asset("/images/icons/eye.svg") }}" ></img></a>
+                            <a href="#"><img class="delete-user" src="{{ asset("images/icons/trash-2.svg") }}" data-delete="{{ user.id }}"></img></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {# DELETE #}
+        {% for user in users %}
+        <div class="delete" data-delete-modal="{{ user.id }}">
+            <div class="delete-center">
+                <div class="popup">
+                    <p>Are you sure you want to delete</p>
+                    <h2>{{user.firstName}} {{user.lastName}}</h2>
+                    <div class="btn-delete">
+                        <a href="{{ path('dashboard_deleteUser', {id: user.id, action:'delete_user'}) }}" class="delete-yes">Yes</a>
+                        <div class="btnNo input-btn">
+                            <a href="#" class="delete-cancle">No</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        <div class="background-add-users">
+            <div class="new-user edit-users">
+                <h2>New User</h2>
+                
+                <div class="formAddModal">
+                    
+                    {{form_start(form, {'attr': {'class': 'inputs'}}) }}
+
+                        <div>
+                            {{form_row(form.email, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.roles, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.password, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.avatar, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.firstName, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.lastName, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.status, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.city, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div class="cancle-and-add">
+                            <div class="closeEdit">
+                                <button class="closeAdd">Cancel</button>
+                            </div>
+                            {{form_row(form.save, {'attr' : {'class': 'editBtn'}}) }}
+                        </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+
+    
+{% endblock %}
+

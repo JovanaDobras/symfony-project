@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+{% block title %} Ode ide title {% endblock %}
+{% block body %}
+
+
+    <div class="table grid-profil">
+      {# <div class="insert-hours-img"><img src="img/clock.png" alt="insert hours"/></div> #}
+        <div class="user-profil">
+            <div class="img-edit-users">
+                <div class="edit-btn">
+                    <a href="javascript:void(0)" class="openEditModal"><img src="{{ asset("images/icons/edit-3.svg") }}" data-edit="{{ clientProfile.id }}"></img></a>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="profil-img-avatar">
+                    <img src="{{clientProfile.avatar}}" class="profil-avatar" />
+                </div>
+                <h2>{{clientProfile.clientName}}</h2>
+                <p><b>Email:</b>{{clientProfile.email}}</p>
+                <p><b>Payment Method:</b> {{clientProfile.paymentMethod}}</p>
+            </div>
+
+            <form>
+            
+            </form>
+            <input type="button" class="btn" value="Filter"> <input/>
+
+        </div>
+
+        <div class="table-profil">
+            <table class="border-left">
+                <thead>
+                    <tr class="profil-tr">
+                        <th>User</th>
+                        <th>Task</th>
+                        <th>Month</th>
+                        <th>Time</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{task.user.email}}</td>
+                        <td>{{task.taskName}}</td>
+                        <td>{{task.month|date("m/d/Y")}}</td>
+                        <td>{{task.time|date("H:i:s")}}</td>
+                        <td class="avatar-and-options">
+                            <a className="dot-btn">
+                                <img src="{{ asset("images/icons/dots.svg")}}"> </img>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    
+    {# EDIT #}
+
+        <div class="modal-edit-user">
+            <div class="new-user edit-users">
+                <h2>New Client</h2>
+                <div class="formAddModal">
+                    
+                    {{form_start(form, {'attr': {'class': 'inputs'}}) }}
+
+                        <div>
+                            {{form_row(form.avatar, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.clientName, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.email, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.paymentMethod, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.bankAcount, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div class="cancle-and-add">
+                            <div class="closeEdit">
+                                <button class="closeAdd">Cancel</button>
+                            </div>
+                            {{form_row(form.save, {'attr' : {'class': 'editBtn'}}) }}
+                        </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}

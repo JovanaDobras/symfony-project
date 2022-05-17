@@ -1,0 +1,694 @@
+/* ..............LOGIN................ */
+body{
+  margin: 0;
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+
+}
+body, html,
+#root{
+  height: 100%;
+}
+.password{
+    position: relative;
+  }
+  .password img{
+    width: 30px;
+    height: 30px;
+  }
+  #submit{
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .background-page{
+    background-image: url('../images/login-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .container{
+    height: 100%;
+  }
+    
+  .container h1{
+      margin: 46px 0px 60px 0px;
+      text-align: left;
+  }
+  .container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    
+  }
+  .flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .full-height{
+    height: 100%;
+  }
+  .form{
+    text-align: center;
+    width: 600px;
+    /* height: 650px; */
+    margin: auto 100px;
+    background-color: rgb(255, 255, 255, 0.8);
+    border-radius: 30px;
+  }
+  .form h1{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 19px;
+  }
+  .form p{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    margin: 0 0 48px 0;
+    text-align-last: left;
+    color: #4A4D51;
+  }
+  .center-form{
+    margin: 40px 100px 100px 100px;
+  }
+  .log-content{
+    display: grid;
+    grid-template-rows: 1fr;
+    row-gap: 30px;
+  }
+  input{
+    width: 100%;
+    height: 40px;
+    border: 0;
+    padding: 7px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    box-sizing: border-box;
+  }
+  input[type="submit"] {
+    background: linear-gradient(180deg, #3372ED 0%, #1138C2 100%);
+    border-radius: 4px;
+    color: white;
+  }
+  .log-content{
+    display: grid;
+    grid-template-rows: 1fr;
+    row-gap: 30px;
+  }
+
+
+  
+/* ..............NAVBAR................ */
+.submenu{
+  background: linear-gradient(180deg, #3372ED 0%, #1138C2 100%);
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 0px 0px 20px 0px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+.submenu img{
+  width: 100px;
+}
+.submenu a{
+  margin: 40px auto;
+}
+.nav-menu{
+  margin: 0 auto;
+  padding: 0px;
+  list-style: none;
+}
+.nav-menu li a{
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+}
+.nav-menu li{
+  margin-bottom: 30px;
+}
+
+/* ............TABLE............. */
+.container-user{
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  display: grid;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+  width: 100%;
+  white-space: nowrap;
+}
+.table{
+  border-radius: 20px;
+  margin: 20px;
+  border: 0.4px solid #C5C5C5;
+  box-shadow: 0 0px 6px 3px #cacaca;
+  overflow: auto;
+}
+.home{
+  overflow: auto;
+}
+th,td{
+  font-size: 16px;
+  padding: 20px 20px;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 19px;
+  border: 1px solid #C5C5C5;
+}
+/* td{
+  border-bottom: 0px;
+  border-left: 0px;
+} */
+th{
+  text-align: left; 
+  border-right: 0px;
+}
+.border-left{
+  border-left: 0px;
+}
+.search{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  padding: 30px 60px;
+  align-items: center;
+  position: sticky;
+  left: 0;
+}
+#myInput {
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 0px 0px 5px 25px;
+  border: 0px solid #ddd;  
+  outline: 0;
+}
+
+input[type="button"],
+.cancle-and-add button,
+.input-btn,
+.delete-yes,
+.editBtn,
+.addBtnUser,
+.delete-input {
+ background: rgb(51,114,237);
+ background: linear-gradient(180deg, #3372ED 0%, #1138C2 100%);
+ border-radius: 4px;
+ color: white;
+ border: 0px;
+ font-weight: 600;
+ font-size: 16px;
+ line-height: 19px;
+ padding: 10px 50px;
+}
+.overflow-y{
+  overflow-y: auto;
+}
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c9c9; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 79%); 
+}
+.avatar-and-options{
+  text-align: center;
+  text-align: left;
+  padding: 15px 0px;
+  border-left: 0;
+}
+.avatar-and-options img{
+  padding: 0px 10px; 
+}
+.avatar img{
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;;
+}
+.users{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100%;
+}
+.options{
+  text-align: center;
+}
+.options a{
+  margin: 0px 5px;
+}
+ 
+/*************PROFIL DEVELOPERS*****************/
+.grid-profil{
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.user-profil{
+  padding: 0 80px;  
+  width: 260px;
+  margin: 30px 0; 
+  border-right: 1px solid #C5C5C5;
+}
+.user-profil h1{
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 41px;
+}
+.user-profil p{
+  font-size: 14px;
+  line-height: 19px;
+}
+.user-profil p,
+.user-profil h1,
+.user-profil input{
+      margin-top: 10px;
+}
+.user-profil input{
+  width: 100%; 
+}
+.img-edit-users{
+  text-align: right;  
+  margin-bottom: 25px;
+}
+.profil-img-avatar{
+  text-align: center;
+}
+.profil-avatar{
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.options{
+  border-left: 0;
+  border-right: 0px;
+}
+.options img{
+  margin: 0 5px;
+}
+
+/*................TABLE MY PROFILE................ */
+
+.table-profil{
+  margin: 30px 60px 30px 60px; 
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.table-profil th{
+  background: linear-gradient(180deg, #3372ED 0%, #1138C2 100%);
+  color: #FFFFFF;
+  text-align: left;
+  padding: 15px;
+  border: 0px;
+}
+.table-profil td{
+  padding: 15px 20px;
+  border: 0px;
+}
+.border-left{
+  overflow: hidden;
+  border-radius: 20px;
+}
+.border-left tr:nth-child(even){
+  background: rgba(96, 96, 96, 0.05);
+}
+.input-btn{
+    display: block;
+    list-style: none;
+    text-decoration-line: none;
+    text-align: center;
+}
+.left{
+  text-align: left;
+}
+ 
+/* .............TABLE CLIENT ............*/
+
+.eye-btn{
+  background-color: white;
+  border: 0px;
+}
+.options button{
+  margin: 0px 5px;
+}
+
+
+/*.............. MODAL DELETE ...........*/
+
+.delete,
+.modalDollars,
+.times,
+.box{
+    box-sizing: border-box;
+    display: none;
+}
+.modalDollars.active{
+  display: block;
+}
+
+.delete.active {
+  display: block;
+}
+.times.active{
+  display: block;
+}
+
+.delete-center,
+.time-center,
+.dollars-center{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    overflow: auto;
+    padding: 15px;
+}
+.wraper{
+    padding: 30px;
+}
+.time-center{
+    display: flex;
+}
+.input-time-client{
+    border: 0.4px solid #CCC7F5;
+    border-radius: 4px;
+}
+.delete-center{
+    display: flex;
+}
+.dollars-center{
+    display: flex;
+}
+.popup{
+    margin: auto;
+    background: white;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+.popup p{
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    margin-top: 30px;
+}
+.popup h2{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+    margin: 0;
+}
+.btn-delete{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 30px;
+    justify-items: right;
+    margin: 31px 0 30px 0;
+    place-content: center;
+}
+.btn-delete input{
+    width: 200px;
+}
+.delete-no{
+    justify-self: left;
+}
+.log-out-btn input,
+.btnNo{
+  color: #3372ED;
+  background: white;
+  border: 1px solid #3372ED;
+}
+.log-out-btn{
+  color: #3372ED;
+  background: white;
+  /* border: 1px solid #3372ED; */
+}
+.btnNo{
+  width: 80px;
+
+}
+.delete-cancle,
+.cancleBtn{
+  text-decoration-line: none;
+  color: #3372ED;
+}
+.delete-yes{
+  text-decoration-line: none;
+  width: 80px;
+}
+
+
+/* MODAL EDIT */
+
+.background-users,
+.background-add-users,
+.modal-edit-user{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  padding: 15px;
+  transition: 0.5s;
+  z-index: 5;
+  display: none;
+}
+
+.new-user{
+  position: fixed;
+  top: 0px;
+  background-color: white;
+  width: 480px;
+  transition: 0.3s;
+  z-index: 10;
+  height: 100%;
+  padding: 20px 0;
+}
+.new-user{
+  right: 0;
+  box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 20px 0px 0px 20px;
+  overflow-y: scroll;
+}
+.new-user h2{
+  margin: auto;
+  width: 360px;
+  font-size: 30px;
+  line-height: 19px;
+  margin-top: 25px;
+}
+.add-img{
+  margin: 35px 0 20px 0;
+  text-align: center;
+}
+.add-img input{
+  font-size: 14px;
+  color: #A2A2A2;
+  width: 80px; 
+  height: 80px; 
+  border-radius: 50%;
+  border: 0.4px solid #CCC7F5;
+  text-align: center;
+}
+.inputs input,
+  textarea,
+  .date input,
+  .inputsClient input{ 
+    height: 30px;
+    margin: 0px;
+    border: 0.4px solid #CCC7F5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-style: normal;
+    font-size: 14px;
+    color: #A2A2A2;
+    padding: 5px 20px;
+  }
+  .inputs,
+  .inputs-Client{
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    width: 360px;
+    margin: auto;
+    row-gap: 15px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+  .inputs-Client{
+    grid-template-rows: repeat(4, 1fr);
+
+  }
+  .inputsClient{
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    width: 360px;
+    margin: auto;
+    row-gap: 22px;
+    margin-top: 20px;
+  }
+  .cancle-and-add{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 360px;
+    margin-top: 50px;
+    align-items: center;
+  }
+  .cancle-btn,
+  .closeAdd{
+    background: white;
+    text-decoration: none;
+    color: #606060;
+    text-align: center;
+    float: right;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  .editBtn{
+    text-decoration: none;
+    text-align: center;
+  }
+
+
+  /* MODAL ADD */
+
+  .addBtnUser{
+    text-decoration: none;
+  }
+
+  /* MODAL DOLLARS */
+
+.modal-time,
+.dollar-modal{
+  margin: auto;
+  background: white;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  border-radius: 20px;
+  padding: 30px 0;
+}
+.modal-time p
+{
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0 0 30px 0;
+}
+.margin-dollars{
+  padding: 0px;
+}
+.grid-dollars{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-items: center;
+  align-items: center;
+  margin: 0 15px 0 0;
+}
+.grid-dollars p{
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 30px 0 20px 0;
+}
+.email-dollars p{
+  font-size: 14px;
+  line-height: 19px;
+  text-align: left;
+  margin: 20px 0 40px 0;
+  padding-left: 40px;
+}
+.email-dollars{
+  border-top: 0.5px solid #BABABA;
+  margin: 0px 20px;
+}
+.time-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 60px;
+  font-size: 14px;
+  line-height: 19px;
+  justify-items: start;
+  column-gap: 120px;
+  margin-bottom: 35px;
+  align-items: flex-start;
+}
+.description{
+  display: grid;
+  row-gap: 10px;
+  justify-items: start;
+}
+.input-time-client{
+  border: 0.4px solid #CCC7F5;
+  border-radius: 4px;
+}
+.date{
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 10px;
+  justify-items: start;
+  width: 100%;
+}
+.hours-time input{
+  padding: 7px 0;
+}
+.hours-time{
+  width: 100%;
+}
+.delete-margin{
+  margin: 0px;
+}
+.delete-no{
+  justify-self: left;
+}
+
+
+
+/* MODAL TIME */
+
+.row-height{
+  height: 90px;
+}
+
+
+/* INTPUTI ZA FORMU */
+
+.inputsForm{
+  height: 30px;
+  margin: 0px;
+  border: 0.4px solid #CCC7F5;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-style: normal;
+  font-size: 14px;
+  color: #A2A2A2;
+  padding: 5px 20px;
+  width: 300px;
+}
+
+

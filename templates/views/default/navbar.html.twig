@@ -1,0 +1,41 @@
+{% set route = app.request.get('route') %}
+{% set admin = is_granted('ROLE_ADMIN') %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
+
+     <body>
+        {% block body %}
+
+        <div class="container">
+            <div class="submenu">
+                <a>
+                    <img src="{{ asset('images/logo.png') }}" alt="logo" class="logo"></img>
+                </a>
+                <ul class="nav-menu">
+
+                {% if admin %}
+                    <li>
+                        <a href="{{ path('dashboard_index') }}" >Users</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('dashboard_clients') }}">Clients</a>
+                    </li>
+                {% endif %}
+                    <li>
+                        <a href="{{ path('dashboard_myProfile', {id: app.user.id}) }}">My profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    {% endblock %}
+
+ </body>
+</html>
+
