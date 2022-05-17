@@ -24,7 +24,8 @@ class UserController extends AbstractController
     public function profile(Request $request, TaskRepository $tr, ClientRepository $cr, Security $security, UserRepository $ur){
 
         $userProfile = $security->getUser();
-        $tasks = $tr->findAll();
+        $userProfile = $ur->findOneBy(['email' => $userProfile->getUserIdentifier()]);
+        $tasks = $userProfile->getTasks();
         $clients = $cr->findAll();
 
         $form = $this->createForm(UsersType::class, $userProfile);
@@ -44,26 +45,25 @@ class UserController extends AbstractController
 
     #[Route('/editTask/{id}', name: 'editTask')]
 
-    public function editTask($id, UserRepository $ur,TaskRepository $tr, ClientRepository $cr){
+    public function editTask($id, UserRepository $ur,TaskRepository $tr, ClientRepository $cr, Request $request, Security $security){
 
-        $userProfile = $ur->findAll();
-        $tasks = $tr->findAll();
-        $editTask = $ur->find($id);
         $clients = $cr->findAll();
-        // dd($editTask);
+        $task = $tr->find($id);
 
+        $userIdLog = $task->getUser()->getId();
+        $user = $ur->find($userIdLog);
+        
+        $form = $this->createForm(TaskType::class, $task);
+        $form->handleRequest($request);
 
-        // $form = $this->createForm(TaskType::class, $editTask);
-        // $form->handleRequest($editTask);
+        if($form->isSubmitted() && $form->isValid()){
+            $editTask = $form->getData();
+            $tr->add($editTask,true);
+            
+            return $this->redirectToRoute('dashboard_user_myProfile');
+        }
 
-        // if($form->isSubmitted() && $form->isValid()){
-        //     $editTask = $form->getData();
-        //     $ur->add($editTask);
-
-        //     return $this->redirectToRoute('dashboard_user_myProfile');
-        // }
-
-        return $this->render('user/editTask.html.twig', ['user' => $editTask, 'tasks' => $tasks, 'clients' => $clients]);
+        return $this->render('user/editTask.html.twig', ['task' => $task, 'clients' => $clients, 'form' => $form->createView()]);
 
 
     }

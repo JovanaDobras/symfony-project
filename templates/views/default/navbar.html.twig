@@ -27,9 +27,17 @@
                         <a href="{{ path('dashboard_clients') }}">Clients</a>
                     </li>
                 {% endif %}
+
+                {% if admin %}
                     <li>
                         <a href="{{ path('dashboard_myProfile', {id: app.user.id}) }}">My profile</a>
                     </li>
+                {% else %}
+                     <li>
+                        <a href="{{ path('dashboard_user_myProfile', {id: app.user.id}) }}">My profile</a>
+                    </li>
+                {% endif %}
+
                 </ul>
             </div>
         </div>

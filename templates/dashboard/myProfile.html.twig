@@ -11,7 +11,7 @@
                 </a>
             </div>
 
-            <div>
+            <div class="infoUser">
                 <div class="profil-img-avatar">
                     <img src="{{user.avatar}}" class="profil-avatar" />
                 </div>
@@ -22,9 +22,18 @@
                 <p><b>Email:</b>{{user.email}}</p>
                 <p><b>Status:</b>{{user.status}}</p>
             </div>
-        
+            <div class="filter-task">
+                <h2 class="h2-filter">Filter</h2>
+                <input type="month" name="month" id="filter-month"/>
+                <select name="client" class="select-client">
+                    {% for client in clients %}
+                    <option value="{{ client.getId() }}">
+                        {{ client.getClientName() }} 
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
             <input type="button" class="btn" value="filter" />
-            <p><b>This month: 120:16:45</b></p>
             <div class="log-out-btn border0">
                 <a href="{{ path('dashboard_logout') }}" class="btn input-btn">Log out</a>
             </div>

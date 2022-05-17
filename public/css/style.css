@@ -269,11 +269,11 @@ input[type="button"],
   text-align: center;
   font-weight: bold;
   font-size: 30px;
-  line-height: 41px;
+  line-height: 30px;
 }
 .user-profil p{
   font-size: 14px;
-  line-height: 19px;
+  line-height: 12px;
 }
 .user-profil p,
 .user-profil h1,
@@ -282,6 +282,13 @@ input[type="button"],
 }
 .user-profil input{
   width: 100%; 
+  margin-bottom: 15px;
+}
+.infoUser{
+  border-bottom: 1px solid rgb(113, 113, 113);
+}
+.infoUser h2{
+  margin: 10px 0;
 }
 .img-edit-users{
   text-align: right;  
@@ -303,6 +310,16 @@ input[type="button"],
 .options img{
   margin: 0 5px;
 }
+.filter-task h2{
+  margin: 0px;
+  text-align: center;
+  color: #1138C2;
+}
+.filter-task{
+  line-height: 45px;
+}
+
+
 
 /*................TABLE MY PROFILE................ */
 
@@ -691,4 +708,29 @@ input[type="button"],
   width: 300px;
 }
 
+
+/* EDIT TASK */
+
+.editTaskTable{
+  text-align: center;
+}
+
+#task_month_year,
+#task_month_day,
+#task_month_month,
+#task_time_hour,
+#task_time_minute,
+#task_client,
+#filter-month,
+.select-client{
+  height: 30px;
+    margin: 0px;
+    border: 0.4px solid #CCC7F5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-style: normal;
+    font-size: 14px;
+    color: #A2A2A2;
+    padding: 5px 20px;
+}
 

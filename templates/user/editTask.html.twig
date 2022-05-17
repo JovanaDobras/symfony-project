@@ -9,14 +9,14 @@
 
             <div>
                 <div class="profil-img-avatar">
-                    <img src="{{user.avatar}}" class="profil-avatar" />
+                    <img src="{{app.user.avatar}}" class="profil-avatar" />
                 </div>
-                <h2>{{user.firstName}}</h2>
-                <h2>{{user.lastName}}</h2>
-                <p><b>First name:</b> {{user.firstName}}</p>
-                <p><b>Last name:</b> {{user.lastName}}</p>
-                <p><b>Email:</b>{{user.email}}</p>
-                <p><b>Status:</b>{{user.status}}</p>
+                <h2>{{app.user.firstName}}</h2>
+                <h2>{{app.user.lastName}}</h2>
+                <p><b>First name:</b> {{app.user.firstName}}</p>
+                <p><b>Last name:</b> {{app.user.lastName}}</p>
+                <p><b>Email:</b>{{app.user.email}}</p>
+                <p><b>Status:</b>{{app.user.status}}</p>
             </div>
         
             <input type="button" class="btn" value="Filter" />
@@ -25,19 +25,16 @@
 
     {# forma edit task #}
 
-        {# <div class="editTaskTable">
-            <h2>Edit task</h2>
-
-            <div class="formEditTask">
-            
+    <div class="editTaskTable">
+        <h2>Edit task</h2>
+        <div class="formEditTask">
             {{form_start(form, {'attr': {'class': 'inputs'}}) }}
+                {# <div>
+                    {{form_row(form.userId, {'attr': {'class': 'input'}}) }}
+                </div> #}
 
                 <div>
-                    {{form_row(form.user_id, {'attr': {'class': 'input'}}) }}
-                </div>
-
-                <div>
-                    {{form_row(form.client_id, {'attr': {'class': 'input'}}) }}
+                    {{form_row(form.client, {'attr': {'class': 'input'}}) }}
                 </div>
 
                 <div>
@@ -59,9 +56,8 @@
                     {{form_row(form.save, {'attr' : {'class': 'editBtn'}}) }}
                 </div>
             {{ form_end(form) }}
-                
             </div>
         </div>
-    </div> #}
+    </div> 
 
 {% endblock %}

@@ -101,6 +101,7 @@ class DashboardController extends AbstractController
         $clientProfile = $cr->find($id);
         $tasks = $tr->findAll();
         $users = $ur->findAll();
+        $clients = $cr->findAll();
 
         $form = $this->createForm(ClientType::class, $clientProfile);
         $form->handleRequest($request);
@@ -112,7 +113,7 @@ class DashboardController extends AbstractController
             return $this->redirectToRoute('dashboard_clients');
         }
 
-        return $this->render('dashboard/profileClient.html.twig', ['clientProfile' => $clientProfile, 'tasks' => $tasks, 'users' => $users, 'form' => $form->createView()]);
+        return $this->render('dashboard/profileClient.html.twig', ['clientProfile' => $clientProfile, 'tasks' => $tasks, 'clients' => $clients, 'users' => $users, 'form' => $form->createView()]);
     }
 
 
