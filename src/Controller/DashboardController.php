@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/a6e5e86abaa90ba7233c262ff0fc99f0', name: 'dashboard_')]
 // #[IsGranted('IS_AUTHENTICATED_FULLY')]
@@ -21,7 +23,7 @@ class DashboardController extends AbstractController
 {
     #[Route('/', name: 'index')]
     // #[IsGranted('ROLE_ADMIN')]
-    public function index(UserRepository $ur, Request $request): Response
+    public function index(UserRepository $ur, Request $request, SluggerInterface $si): Response
     {
         $users = $ur->findAll();
 
@@ -33,6 +35,25 @@ class DashboardController extends AbstractController
         
         if($form->isSubmitted() && $form->isValid()){
             $product = $form->getData();
+            $imageFile = $form->get('avatar')->getData();
+
+            if($imageFile){
+                $orgFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $si->slug($orgFileName);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                
+                try{
+                    $imageFile->move(
+                        $this->getParameter('user_profile_image'),
+                        $newFilename
+                    );
+                } catch(FileException $e){
+                    return new Response('File upload error:'. $e);
+                }
+                
+                $newUser->setAvatar($newFilename);
+            }
+
             $ur->add($product);
 
             return $this->redirectToRoute('dashboard_index');
@@ -50,7 +71,7 @@ class DashboardController extends AbstractController
 
     #[Route('clients', name: 'clients')]
 
-    public function clients(ClientRepository $cr, Request $request){
+    public function clients(ClientRepository $cr, Request $request, SluggerInterface $si){
 
         $clients = $cr->findAll();
         $newClient = new Client();
@@ -61,6 +82,25 @@ class DashboardController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
 
             $newClient = $form->getData();
+
+            $imageFile = $form->get('avatar')->getData();
+
+            if($imageFile){
+                $orgFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $si->slug($orgFileName);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                
+                try{
+                    $imageFile->move(
+                        $this->getParameter('user_profile_image'),
+                        $newFilename
+                    );
+                } catch(FileException $e){
+                    return new Response('File upload error:'. $e);
+                }
+                
+                $newClient->setAvatar($newFilename);
+            }
             $cr->add($newClient);
 
             return $this->redirectToRoute('dashboard_clients');
@@ -73,7 +113,7 @@ class DashboardController extends AbstractController
     
     #[Route('myProfile/{id}', name: 'myProfile')]
 
-    public function profile($id, UserRepository $ur, TaskRepository $tr, ClientRepository $cr, Request $request){
+    public function profile($id, UserRepository $ur, TaskRepository $tr, ClientRepository $cr, Request $request, SluggerInterface $si){
 
         $userProfile = $ur->find($id);
         $tasks = $tr->findAll();
@@ -84,19 +124,55 @@ class DashboardController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $userProfile = $form->getData();
+
+            $imageFile = $form->get('avatar')->getData();
+
+            if($imageFile){
+                $orgFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $si->slug($orgFileName);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                
+                try{
+                    $imageFile->move(
+                        $this->getParameter('user_profile_image'),
+                        $newFilename
+                    );
+                } catch(FileException $e){
+                    return new Response('File upload error:'. $e);
+                }
+                
+                $userProfile->setAvatar($newFilename);
+            }
+
+
             $ur->add($userProfile);
 
             return $this->redirectToRoute('dashboard_index');
         }
+
+        // if($request->request->get('filter_client_month')) {
+        //     $tasks = $this->tr->filter_client_month(
+        //         $request->request->get('month'),
+        //         $this->cr->find($request->request->get('client')),
+        //     );
+        // }
+
+        if($request->request->get('reset-page')){
+            // $tasks = $user->getTasks();
+        }
         
-        return $this->render('dashboard/myProfile.html.twig', ['user' => $userProfile, 'tasks' => $tasks, 'clients' => $clients, 'form' => $form->createView()]);
+        return $this->render('dashboard/myProfile.html.twig', [
+            'user' => $userProfile, 
+            'tasks' => $tasks, 
+            'clients' => $clients, 
+            'form' => $form->createView()]);
 
     }
 
 
     #[Route('profieClient/{id}', name: 'clientProfile')]
 
-    public function clientProfie($id, ClientRepository $cr, TaskRepository $tr, UserRepository $ur, Request $request){
+    public function clientProfie($id, ClientRepository $cr, TaskRepository $tr, UserRepository $ur, Request $request, SluggerInterface $si){
 
         $clientProfile = $cr->find($id);
         $tasks = $tr->findAll();
@@ -108,6 +184,25 @@ class DashboardController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $clientProfile = $form->getData();
+
+            $imageFile = $form->get('avatar')->getData();
+
+            if($imageFile){
+                $orgFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $si->slug($orgFileName);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                
+                try{
+                    $imageFile->move(
+                        $this->getParameter('user_profile_image'),
+                        $newFilename
+                    );
+                } catch(FileException $e){
+                    return new Response('File upload error:'. $e);
+                }
+                
+                $clientProfile->setAvatar($newFilename);
+            }
             $cr->add($clientProfile);
 
             return $this->redirectToRoute('dashboard_clients');
@@ -150,15 +245,6 @@ class DashboardController extends AbstractController
         $users = $ur->findAll();
         $action = $request->query->get('action');
 
-        // $form = $this->createForm(UsersType::class, $userEdit, ['method' => 'PUT']);
-        // $form->handleRequest($request);
-
-        // if($form->isSubmitted() && $form->isValid()){
-
-        //     $userEdit = $form->getData();
-        //     $ur->add($userEdit);
-
-        // }
         return $this->render('dashboard/index.html.twig', [ 'users' => $users]); 
 
     }

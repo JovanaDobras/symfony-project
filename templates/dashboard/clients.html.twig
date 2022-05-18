@@ -21,7 +21,9 @@
                 <tbody>
                     {% for client in clients %}
                     <tr>
-                        <td>{{client.avatar}}</td>
+                        <td style="text-align-last: center; padding: 5px;">
+                            <img class="imgProfileUser" src="{{ asset('images/profile-images/'~client.avatar) }}" alt="profile image"/>
+                        </td>
                         <td>{{client.clientName}}</td>
                         <td>{{client.email}}</td>
                         <td class="options">

@@ -47,6 +47,18 @@ class TaskRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function filter_cliend_month($client, $month){
+
+        return $this->createQueryBuilder('t')
+        ->andWhere('t.date LIKE :date')
+        ->setParameter('date', $month.'-%')
+        ->andWhere('t.client = :client')
+        ->setParameter('client', $client)
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Task[] Returns an array of Task objects
 //     */

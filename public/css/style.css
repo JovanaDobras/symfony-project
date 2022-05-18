@@ -156,6 +156,19 @@ table {
   box-shadow: 0 0px 6px 3px #cacaca;
   overflow: auto;
 }
+.imgProfileUser{
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.imgProfile{
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+
+}
 .home{
   overflow: auto;
 }
@@ -317,6 +330,14 @@ input[type="button"],
 }
 .filter-task{
   line-height: 45px;
+}
+.filter-btn{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.filter-btn input{
+  width: 85%;
+  margin-bottom: 15px;
 }
 
 
@@ -695,7 +716,8 @@ input[type="button"],
 
 /* INTPUTI ZA FORMU */
 
-.inputsForm{
+.inputsForm,
+#users_roles{
   height: 30px;
   margin: 0px;
   border: 0.4px solid #CCC7F5;
@@ -706,6 +728,13 @@ input[type="button"],
   color: #A2A2A2;
   padding: 5px 20px;
   width: 300px;
+}
+#users_avatar,
+#client_avatar{
+  border: 0px;
+}
+#users_roles{
+  width: 100%;
 }
 
 

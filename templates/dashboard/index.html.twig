@@ -9,7 +9,6 @@
                 <input type="text" id="myInput" variant="outlined" placeholder="Search"></input>
                     <a href="javascript:void(0)" class="addBtnUser" >Add user</a>
             </div>
-
             <table>
                 <thead>
                     <tr>
@@ -25,7 +24,9 @@
                 <tbody>
                     {% for user in users %}
                     <tr>
-                        <td>{{user.avatar}}</td>
+                        <td style="text-align-last: center; padding: 5px;">
+                            <img class="imgProfileUser" src="{{ asset('images/profile-images/'~user.avatar) }}" alt="profile image"/>
+                        </td>
                         <td>{{user.firstName}}</td>
                         <td>{{user.lastName}}</td>
                         <td>{{user.city}}</td>
@@ -61,6 +62,7 @@
         {% endfor %}
 
 
+    {# ADD USER #}
         <div class="background-add-users">
             <div class="new-user edit-users">
                 <h2>New User</h2>
@@ -108,7 +110,6 @@
                             {{form_row(form.save, {'attr' : {'class': 'editBtn'}}) }}
                         </div>
                     {{ form_end(form) }}
-
                 </div>
             </div>
         </div>

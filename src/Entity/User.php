@@ -45,6 +45,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Task::class)]
     private $tasks;
 
+ 
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -206,6 +208,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $task->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNameImage(): ?string
+    {
+        return $this->nameImage;
+    }
+
+    public function setNameImage(string $nameImage): self
+    {
+        $this->nameImage = $nameImage;
 
         return $this;
     }

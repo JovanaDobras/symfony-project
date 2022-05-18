@@ -12,13 +12,13 @@
             </div>
             <div class="infoUser">
                 <div class="profil-img-avatar">
-                    <img src="{{clientProfile.avatar}}" class="profil-avatar" />
+                    <img class="imgProfile" src="{{ asset('images/profile-images/'~clientProfile.avatar) }}" alt="profile image"/>
                 </div>
                 <h2>{{clientProfile.clientName}}</h2>
                 <p><b>Email:</b>{{clientProfile.email}}</p>
                 <p><b>Payment Method:</b> {{clientProfile.paymentMethod}}</p>
             </div>
-            <div class="filter-task">
+                <form method="POST" class="filter-task">
                 <h2 class="h2-filter">Filter</h2>
                 <input type="month" name="month" id="filter-month"/>
                 <select name="client" class="select-client">
@@ -28,8 +28,11 @@
                     </option>
                     {% endfor %}
                 </select>
-            </div>
-            <input type="button" class="btn" value="Filter"> <input/>
+                <div class="filter-btn">
+                    <input type="button" name="filter" class="btn" value="Filter"></input>
+                    <input type="button" name="reset-filter" class="btn" value="Reset"></input>
+                </div>
+            </form>
         </div>
 
         <div class="table-profil">
@@ -68,7 +71,7 @@
 
         <div class="modal-edit-user">
             <div class="new-user edit-users">
-                <h2>New Client</h2>
+                <h2>Edit Client</h2>
                 <div class="formAddModal">
                     
                     {{form_start(form, {'attr': {'class': 'inputs'}}) }}
@@ -100,7 +103,6 @@
                             {{form_row(form.save, {'attr' : {'class': 'editBtn'}}) }}
                         </div>
                     {{ form_end(form) }}
-
                 </div>
             </div>
         </div>
