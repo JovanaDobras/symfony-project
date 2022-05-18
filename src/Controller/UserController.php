@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Task;
 use App\Form\TaskType;
-use App\Repository\TaskRepository;
-use App\Repository\ClientRepository;
-use App\Repository\UserRepository;
 use App\Form\UsersType;
+use App\Repository\TaskRepository;
+use App\Repository\UserRepository;
+use App\Repository\ClientRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
@@ -64,9 +65,35 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/editTask.html.twig', ['task' => $task, 'clients' => $clients, 'form' => $form->createView()]);
-
-
     }
+
+    #[Route('/addTask/{id}', name: 'addTask')]
+
+    public function addTask(TaskRepository $tr, UserRepository $ur , ClientRepository $cr, Request $request, $id){
+
+        $clients = $cr->findAll();
+        $user = $ur->find($id);
+
+        $newTask = new Task();
+
+        $form = $this->createForm(TaskType::class, $newTask);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $newTask = $form->getData();
+
+            //postavljanje default usera
+            $newTask->setUser($user);   
+
+            $tr->add($newTask);
+            return $this->redirectToRoute('dashboard_user_myProfile');
+        }
+        
+        return $this->render('user/addTask.html.twig', ['clients' => $clients, 'form' => $form->createView()]);
+
+
+        }
 
 
 }
+

@@ -33,16 +33,11 @@ class TaskType extends AbstractType
                   'class' => 'inputForm'
                 ]
               ])
-            // ->add('user', TextType::class, [
-            //     'attr' => [
-            //       'class' => 'inputForm'
-            //     ]
-            //   ])
             ->add('client', EntityType::class, [
                 'class' => Client::class,
                 'choice_label' =>'clientName'
               ])
-            ->add('save', SubmitType::class, ['label' => 'Edit task']);
+            ->add('save', SubmitType::class, ['label' => 'Add task']);
 
         ;
     }

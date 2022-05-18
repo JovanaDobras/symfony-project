@@ -27,7 +27,7 @@ class TaskRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Task $entity, bool $flush = false): void
+    public function add(Task $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -39,7 +39,7 @@ class TaskRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Task $entity, bool $flush = false): void
+    public function remove(Task $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {

@@ -41,8 +41,11 @@
                 <a href="{{ path('dashboard_logout') }}" class="btn input-btn">Log out</a>
             </div>
         </div>
-
+        
         <div class="table-profil">
+        <div class="closeEdit">
+            <a href="{{ path('dashboard_user_addTask', {id: app.user.id}) }}" class="editBtn addTask" >Add task</a>
+        </div>
             <table class="border-left">
                 <thead>
                     <tr class="profil-tr">

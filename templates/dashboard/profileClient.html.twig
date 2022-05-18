@@ -36,11 +36,15 @@
         </div>
 
         <div class="table-profil">
+        <div class="closeEdit">
+            <a href="{{ path('dashboard_addTaskClient', {id: clientProfile.id}) }}" class="editBtn addTask" >Add task</a>
+        </div>
             <table class="border-left">
                 <thead>
                     <tr class="profil-tr">
                         <th>User</th>
                         <th>Task</th>
+                        <th>Edit Task</th>
                         <th>Month</th>
                         <th>Time</th>
                         <th></th>
@@ -51,6 +55,11 @@
                     <tr>
                         <td>{{task.user.email}}</td>
                         <td>{{task.taskName}}</td>
+                        <td class="avatar-and-options">
+                            <a href="{{ path('dashboard_editTask', {id: task.id})}}" className="dot-btn">
+                                <img src="{{ asset("images/icons/edit-3.svg") }}"></img>
+                            </a>
+                        </td>
                         <td>{{task.month|date("m/d/Y")}}</td>
                         <td>{{task.time|date("H:i:s")}}</td>
                         <td class="avatar-and-options">

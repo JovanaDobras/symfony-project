@@ -9,7 +9,6 @@
                     <a href="javascript:void(0)" class="openEditModal"><img src="{{ asset("images/icons/edit-3.svg") }}" data-edit="{{ user.id }}" ></img></a>
                 </a>
             </div>
-
             <div class="infoUser">
                 <div class="profil-img-avatar">
                     <img class="imgProfile" src="{{ asset('images/profile-images/'~user.avatar) }}" alt="profile image"/>
@@ -42,11 +41,15 @@
         </div>
 
         <div class="table-profil">
+        <div class="closeEdit">
+            <a href="{{ path('dashboard_addTask', {id: user.id}) }}" class="editBtn addTask" >Add task</a>
+        </div>
             <table class="border-left">
                 <thead>
                     <tr class="profil-tr">
                         <th>Client</th>
                         <th>Task</th>
+                        <th>Edit task</th>
                         <th>Month</th>
                         <th>Time</th>
                         <th></th>
@@ -56,7 +59,12 @@
                     {% for task in tasks %}
                     <tr>
                         <td>{{task.client.clientName}}</td>
-                        <td>{{task.user.email}}</td>
+                        <td>{{task.taskName}}</td>
+                        <td class="avatar-and-options">
+                            <a href="{{ path('dashboard_editTask', {id: task.id})}}" className="dot-btn">
+                                <img src="{{ asset("images/icons/edit-3.svg") }}"></img>
+                            </a>
+                        </td>
                         <td>{{task.month|date("m/d/Y")}}</td>
                         <td>{{task.time|date("H:i:s")}}</td>
                         <td class="avatar-and-options">

@@ -376,6 +376,12 @@ input[type="button"],
 .left{
   text-align: left;
 }
+.addTask{
+  float: right;
+    margin-bottom: 10px;
+    width: 110px;
+    padding: 7px;
+}
  
 /* .............TABLE CLIENT ............*/
 
