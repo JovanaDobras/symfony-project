@@ -37,9 +37,18 @@ class UserController extends AbstractController
             $ur->add($product);
 
             return $this->redirectToRoute('dashboard_user_myProfile');
-
         }
 
+        if($request->request->get('filter_client_month')){
+            $tasks = $tr->filter_client_month(
+                $request->request->get('month'),
+                $cr->find($request->request->get('client'))
+            );
+        }
+
+        if($request->request->get('reset')){
+            $tasks = $userProfile->getTasks();
+        }
         return $this->render('user/profileUser.html.twig', ['user' => $userProfile, 'tasks' => $tasks, 'clients' => $clients, 'form' => $form->createView()]);
 
     }

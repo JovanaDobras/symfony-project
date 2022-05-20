@@ -334,10 +334,27 @@ input[type="button"],
 .filter-btn{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
 }
-.filter-btn input{
-  width: 85%;
+.filter-btn input,
+.filter-btn button{
+  width: 125px;
+  height: 40px;
+  margin: 0;
   margin-bottom: 15px;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.btn-blue{
+  background: linear-gradient(180deg, #3372ED 0%, #1138C2 100%);
+    border-radius: 4px;
+    color: white;
+    border: 0px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 5px 50px;
 }
 
 

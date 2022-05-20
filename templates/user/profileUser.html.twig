@@ -22,7 +22,7 @@
                 <p><b>Email:</b>{{app.user.email}}</p>
                 <p><b>Status:</b>{{app.user.status}}</p>
             </div>
-              <form class="filter-task">
+              <form class="filter-task" method="POST">
                 <h2 class="h2-filter">Filter</h2>
                 <input type="month" name="month" id="filter-month"/>
                 <select name="client" class="select-client">
@@ -33,8 +33,8 @@
                     {% endfor %}
                 </select>
                 <div class="filter-btn">
-                    <input type="button" class="btn" value="Filter"></input>
-                    <input type="button" class="btn" value="Reset"></input>
+                    <input type="submit" name="filter_client_month" class="btn" value="Filter"></input>
+                    <button name="reset" class="btn-blue input">Reset</button>
                 </div>
             </form>
             <div class="log-out-btn border0">

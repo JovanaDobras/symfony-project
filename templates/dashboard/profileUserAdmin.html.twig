@@ -1,47 +1,52 @@
 {% extends 'base.html.twig' %}
-{% block title %} Profile Client {% endblock %}
+{% block title %} Profile {% endblock %}
 {% block body %}
-
 
     <div class="table grid-profil">
         <div class="user-profil">
             <div class="img-edit-users">
-                <div class="edit-btn">
-                    <a href="javascript:void(0)" class="openEditModal"><img src="{{ asset("images/icons/edit-3.svg") }}" data-edit="{{ clientProfile.id }}"></img></a>
-                </div>
+                <a class="edit-btn">
+                    <a href="javascript:void(0)" class="openEditModal"><img src="{{ asset("images/icons/edit-3.svg") }}" data-edit="{{ user.id }}" ></img></a>
+                </a>
             </div>
             <div class="infoUser">
                 <div class="profil-img-avatar">
-                    <img class="imgProfile" src="{{ asset('images/profile-images/'~clientProfile.avatar) }}" alt="profile image"/>
+                    <img class="imgProfile" src="{{ asset('images/profile-images/'~user.avatar) }}" alt="profile image"/>
                 </div>
-                <h2>{{clientProfile.clientName}}</h2>
-                <p><b>Email:</b>{{clientProfile.email}}</p>
-                <p><b>Payment Method:</b> {{clientProfile.paymentMethod}}</p>
+                <h2>{{user.firstName}}</h2>
+                <h2>{{user.lastName}}</h2>
+                <p><b>First name:</b> {{user.firstName}}</p>
+                <p><b>Last name:</b> {{user.lastName}}</p>
+                <p><b>Email:</b>{{user.email}}</p>
+                <p><b>Status:</b>{{user.status}}</p>
             </div>
-            <form method="POST" class="filter-task">
+            <form class="filter-task" method="POST">
                 <h2 class="h2-filter">Filter</h2>
                 <input type="month" name="month" id="filter-month"/>
-                <select name="user" class="select-client">
-                    {% for user in users %}
-                    <option value="{{ user.getId() }}">
-                        {{ user.getEmail() }} 
+                <select name="client" class="select-client">
+                    {% for client in clients %}
+                    <option value="{{ client.getId() }}">
+                        {{ client.getClientName() }} 
                     </option>
                     {% endfor %}
                 </select>
                 <div class="filter-btn">
-                    <input type="submit" name="filter_user_month" class="btn" value="Filter"></input>
+                    <input type="submit" name="filter_client_month" class="btn" value="Filter"></input>
                     <button class=" btn-blue input" name="reset">Reset</button>
                 </div>
             </form>
+            <div class="log-out-btn border0">
+                <a href="{{ path('dashboard_logout') }}" class="btn input-btn">Log out</a>
+            </div>
         </div>
 
         <div class="table-profil">
             <table class="border-left">
                 <thead>
                     <tr class="profil-tr">
-                        <th>User</th>
+                        <th>Client</th>
                         <th>Task</th>
-                        <th>Edit Task</th>
+                        <th>Edit task</th>
                         <th>Month</th>
                         <th>Time</th>
                         <th></th>
@@ -50,7 +55,7 @@
                 <tbody>
                     {% for task in tasks %}
                     <tr>
-                        <td>{{task.user.email}}</td>
+                        <td>{{task.client.clientName}}</td>
                         <td>{{task.taskName}}</td>
                         <td>{{task.month|date("m/d/Y")}}</td>
                         <td>{{task.time|date("H:i:s")}}</td>
@@ -67,34 +72,46 @@
     </div>
 
 
-    
-    {# EDIT #}
+    {# edit user#}
 
         <div class="modal-edit-user">
             <div class="new-user edit-users">
-                <h2>Edit Client</h2>
+                <h2>Edit User</h2>
+                
                 <div class="formAddModal">
                     
                     {{form_start(form, {'attr': {'class': 'inputs'}}) }}
-
-                        <div>
-                            {{form_row(form.avatar, {'attr': {'class': 'inputForm'}}) }}
-                        </div>
-
-                        <div>
-                            {{form_row(form.clientName, {'attr': {'class': 'inputForm'}}) }}
-                        </div>
 
                         <div>
                             {{form_row(form.email, {'attr': {'class': 'inputForm'}}) }}
                         </div>
 
                         <div>
-                            {{form_row(form.paymentMethod, {'attr': {'class': 'inputForm'}}) }}
+                            {{form_row(form.roles, {'attr': {'class': 'inputForm'}}) }}
                         </div>
 
                         <div>
-                            {{form_row(form.bankAcount, {'attr': {'class': 'inputForm'}}) }}
+                            {{form_row(form.password, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.avatar) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.firstName, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.lastName, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.status, {'attr': {'class': 'inputForm'}}) }}
+                        </div>
+
+                        <div>
+                            {{form_row(form.city, {'attr': {'class': 'inputForm'}}) }}
                         </div>
 
                         <div class="cancle-and-add">
@@ -107,6 +124,5 @@
                 </div>
             </div>
         </div>
-
 
 {% endblock %}

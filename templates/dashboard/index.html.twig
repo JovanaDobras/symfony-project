@@ -33,7 +33,7 @@
                         <td>{{user.email}}</td>
                         <td>{{user.status}}</td>
                         <td class="options">
-                            <a href="{{ path('dashboard_myProfile', {id: user.id}) }}" ><img src="{{ asset("/images/icons/eye.svg") }}" ></img></a>
+                            <a href="{{ path('dashboard_profileUser', {id: user.id}) }}" ><img src="{{ asset("/images/icons/eye.svg") }}" ></img></a>
                             <a href="#"><img class="delete-user" src="{{ asset("images/icons/trash-2.svg") }}" data-delete="{{ user.id }}"></img></a>
                         </td>
                     </tr>
